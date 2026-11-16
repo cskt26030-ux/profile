@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>たな | 自己紹介</title>
+  <style>
+    /* ==========================================================================
+       ベース設定・カラー変数（青を基調とした高いコントラストの配色）
+       ========================================================================== */
+    :root {
+      --primary-blue: #1e40af;      /* 信頼感と落ち着きのある濃い青 */
+      --secondary-blue: #2563eb;    /* 爽やかなアクセントの青 */
+      --light-blue-bg: #eff6ff;     /* カード内の柔らかな背景色 */
+      --border-blue: #bfdbfe;       /* 境界線用の淡い青 */
+      --page-bg: #f8fafc;           /* 全体の背景色（目に優しいオフホワイト） */
+      --card-bg: #ffffff;           /* メインコンテンツの背景色 */
+      --text-main: #0f172a;         /* 本文用（高い可読性を確保する濃紺グレー） */
+      --text-muted: #475569;        /* 補足テキスト用 */
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-sm: 0 4px 20px rgba(30, 64, 175, 0.08);
+    }
+
+    /* リセットと基本タイポグラフィ（システムフォントのみ使用） */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background-color: var(--page-bg);
+      color: var(--text-main);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ==========================================================================
+       レイアウトコンテナ
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       ヘッダー / プロフィールヒーローエリア
+       ========================================================================== */
+    .hero-card {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    /* インラインSVGアバター枠 */
+    .avatar-circle {
+      width: 88px;
+      height: 88px;
+      background-color: rgba(255, 255, 255, 0.16);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .avatar-circle svg {
+      width: 44px;
+      height: 44px;
+      fill: #ffffff;
+    }
+
+    .profile-badge {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+
+    .profile-greeting {
+      font-size: 1rem;
+      color: #e0e7ff;
+      max-width: 540px;
+    }
+
+    /* ==========================================================================
+       メインコンテンツ（2カラムレスポンシブグリッド）
+       ========================================================================== */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 1.35em;
+      background-color: var(--secondary-blue);
+      border-radius: 3px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-blue);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 64, 175, 0.12);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      background-color: var(--light-blue-bg);
+      color: var(--primary-blue);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-box svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--secondary-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .card-body {
+      font-size: 1rem;
+      color: var(--text-muted);
+      background-color: var(--light-blue-bg);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      line-height: 1.7;
+    }
+
+    /* ==========================================================================
+       フッター
+       ========================================================================== */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border-blue);
+      background-color: var(--card-bg);
+      margin-top: 2rem;
+    }
+
+    /* ==========================================================================
+       レスポンシブ調整（タブレット・PCなどの広い画面向け）
+       ========================================================================== */
+    @media (min-width: 680px) {
+      .container {
+        padding: 3.5rem 2rem;
+      }
+
+      .hero-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 3rem;
+        gap: 2rem;
+      }
+
+      .avatar-circle {
+        width: 104px;
+        height: 104px;
+      }
+
+      .avatar-circle svg {
+        width: 52px;
+        height: 52px;
+      }
+
+      .profile-name {
+        font-size: 2.35rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <!-- プロフィール概要セクション -->
+    <header class="hero-card" aria-label="プロフィール">
+      <div class="avatar-circle" aria-hidden="true">
+        <!-- シンプルな人物アイコン（インラインSVG） -->
+        <svg viewBox="0 0 24 24">
+          <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="profile-badge">大学1年生</span>
+        <h1 class="profile-name">たな</h1>
+        <p class="profile-greeting">
+          はじめまして、大学1年生の「たな」です。<br>
+          同級生のみなさんに、自分のこれまでのことや関心を知ってもらいたくてこのページを作りました。よろしくお願いします！
+        </p>
+      </div>
+    </header>
+
+    <!-- 関心・これまでのことセクション -->
+    <section aria-labelledby="about-heading">
+      <h2 id="about-heading" class="section-title">自分のこと・関心</h2>
+
+      <div class="cards-grid">
+        <!-- カード1：これまでのこと（空手） -->
+        <article class="info-card">
+          <div class="card-header">
+            <div class="icon-box" aria-hidden="true">
+              <!-- 帯・道着をイメージしたシンプルなSVGアイコン -->
+              <svg viewBox="0 0 24 24">
+                <path d="M4 7l4-3 4 3 4-3 4 3v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/>
+                <path d="M4 13h16"/>
+                <path d="M12 13l-2 4"/>
+                <path d="M12 13l2 4"/>
+              </svg>
+            </div>
+            <div>
+              <span class="card-tag">高校時代</span>
+              <h3 class="card-title">空手をやっていました</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            高校時代は空手に取り組んでいました。体を動かすことや、何か一つのことに打ち込むことが好きです。
+          </p>
+        </article>
+
+        <!-- カード2：関心・これからのこと（音楽・ライブ） -->
+        <article class="info-card">
+          <div class="card-header">
+            <div class="icon-box" aria-hidden="true">
+              <!-- 音符をイメージしたシンプルなSVGアイコン -->
+              <svg viewBox="0 0 24 24">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <span class="card-tag">関心・目標</span>
+              <h3 class="card-title">音楽とライブ活動</h3>
+            </div>
+          </div>
+          <p class="card-body">
+            音楽が好きです。大学生活では、これからライブを行いたいと思っています。音楽が好きな人がいたらぜひ話しかけてください！
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>たな — 大学1年生 自己紹介ページ</p>
+  </footer>
+
+</body>
+</html>
